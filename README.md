@@ -1,4 +1,11 @@
-# PyTorch Template Project
+# pytorch-ViT
+Unofficial implementation of Vision Transformer (ViT) under the pytorch template (https://github.com/victoresque/pytorch-template)
+
+From the paper:
+
+An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
+
+
 PyTorch deep learning project made easy.
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
