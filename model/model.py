@@ -1,6 +1,73 @@
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from base import BaseModel
+
+class PatchEmbedding(nn.Module):
+    """
+    Split image into patches and then embed them through linear projection.
+
+    Parameters
+    ----------
+    img_size : int 
+        size of the image, it is a square
+    
+    patch_size : int
+        size of the patch
+    
+    in_chans : int
+        number of input channels
+
+    embed_dim : int
+        size of embedding dimension
+
+    Attributes
+    ----------
+    n_patches : int
+        number of patches divided from the input image
+    
+    proj : nn.Conv2d
+        Convolutional layer that does both the splitting into patches and their embedding
+    """
+    def __init__(self, img_size, patch_size, in_chans = 3, embed_dim = 768):
+        super.__init__()
+        self.img_size = img_size
+        self.patch_size = patch_size
+        self.n_patches = (img_size // patch_size) ** 2
+
+        self.proj = nn.Conv2d(
+            in_chans,
+            embed_dim,
+            kernel_size = patch_size,
+            stride = patch_size
+        )
+    
+    def forward(self, x):
+        """
+        Parameters
+        ----------
+        x : torch.Tensor
+            shape (n_samples, in_chnas, img_size ,img_size)
+            just a batch of images
+        
+        Returns
+        -------
+        torch.Tensor
+            shape (n_samples, n_patches, embed_dim)
+        """
+
+        x = self.proj(x) # (n_samples, embed_dim, n_patches ** 0.5, n_patches ** 0.5)
+        x = x.flatten(dim=2) # (n_samples, embed_dim, n_patches)
+        x = x.transpose(1,2) # (n_samples, n_patches, embed_dim)
+
+        return x
+
+
+class Attention(nn.Module):
+    """
+    """
+
+
 
 
 class MnistModel(BaseModel):
