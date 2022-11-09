@@ -4,7 +4,9 @@ Unofficial implementation of Vision Transformer (ViT) under the pytorch template
 An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
 
 References:
+
 https://jalammar.github.io/illustrated-transformer/
+
 https://youtu.be/ovB0ddFtzzA
 
 PyTorch deep learning project made easy.
