@@ -8,7 +8,9 @@ https://jalammar.github.io/illustrated-transformer/
 https://youtu.be/ovB0ddFtzzA  
 
 #### Training:  
-https://github.com/omihub777/ViT-CIFAR
+https://github.com/omihub777/ViT-CIFAR  
+https://arxiv.org/abs/2106.10270
+
 
 PyTorch deep learning project made easy.
 
