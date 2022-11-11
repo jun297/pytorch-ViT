@@ -3,8 +3,12 @@
 An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
 
 ### References:  
+#### Implementation:  
 https://jalammar.github.io/illustrated-transformer/  
 https://youtu.be/ovB0ddFtzzA  
+
+#### Training:  
+https://github.com/omihub777/ViT-CIFAR
 
 PyTorch deep learning project made easy.
 
