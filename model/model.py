@@ -30,7 +30,7 @@ class PatchEmbedding(nn.Module):
         Convolutional layer that does both the splitting into patches and their embedding
     """
     def __init__(self, img_size, patch_size, in_chans = 3, embed_dim = 768):
-        super.__init__()
+        super().__init__()
         self.img_size = img_size
         self.patch_size = patch_size
         self.n_patches = (img_size // patch_size) ** 2
@@ -57,7 +57,7 @@ class PatchEmbedding(nn.Module):
         """
 
         x = self.proj(x) # (n_samples, embed_dim, n_patches ** 0.5, n_patches ** 0.5)
-        x = x.flatten(dim=2) # (n_samples, embed_dim, n_patches)
+        x = x.flatten(start_dim=2) # (n_samples, embed_dim, n_patches)
         x = x.transpose(1,2) # (n_samples, n_patches, embed_dim)
 
         return x
@@ -78,11 +78,11 @@ class Attention(nn.Module):
     qkv_bias : bool
         If True then we include bias to the query, key and value projections.
     
-    atten_p : float
+    attn_p : float
         Dropout probability applied to the query, key and value tensors.
 
     proj_p : float
-        Dropout probability applied to the output tnesor
+        Dropout probability applied to the output tensor
 
     Attributes
     ----------
@@ -100,7 +100,7 @@ class Attention(nn.Module):
         Dropout layers
     """
     def __init__(self, dim, n_heads=12, qkv_bias=True, attn_p=0., proj_p=0.):
-        super().__int__()
+        super().__init__()
         self.n_heads = n_heads
         self.dim = dim
         self.head_dim = dim // n_heads
@@ -143,9 +143,10 @@ class Attention(nn.Module):
 
         q, k, v = qkv[0], qkv[1], qkv[2]
         k_t = k.transpose(-2, -1) # (n_samples, n_heads, head_dim ,n_patches + 1)
-        score = (q @ k_t) * self.scale
-        # (n_smaples, n_heads, n_patches + 1, n_patches + 1)
-        attn = score.softmax(dim=1)
+        score = (q @ k_t) * self.scale # (n_samples, n_heads, n_patches + 1, n_patches + 1)
+        
+        attn = score.softmax(dim=-1) # (n_samples, n_heads, n_patches + 1, head_dim)
+        attn = self.attn_drop(attn)
 
         weighted_avg = attn @ v #(n_samples, n_heads, n_patches + 1, head_dim)
         # Zs (Z_1, Z_2, ...)  in Alammar's blog post
@@ -157,6 +158,8 @@ class Attention(nn.Module):
         # make Z from all the attnetion heads.
         x = self.proj(weighted_avg) # (n_samples, n_patches + 1, dim)
         x = self.proj_drop(x) # (n_samples, n_patches + 1, dim)
+
+        return x
 
 class MLP(nn.Module):
     """
@@ -397,6 +400,7 @@ class VisionTransformer(nn.Module):
         """
         n_samples = x.shape[0]
         x = self.patch_embed(x) # (n_samples, n_patches, embed_dim)
+
         cls_token = self.cls_token.expand(n_samples,-1,-1) # (n_samples, 1, embed_dim)
         x = torch.cat((cls_token, x), dim = 1) # (n_samples, 1 + n_patches, embed_dim)
         x = x + self.pos_embed
@@ -410,3 +414,5 @@ class VisionTransformer(nn.Module):
         # why we only take cls token? this embedding encodes the meaning of entire image.
         # analogous to BERT
         x = self.head(cls_token_final)
+
+        return x
