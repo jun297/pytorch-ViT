@@ -1,11 +1,11 @@
 # pytorch-ViT
-### Unofficial implementation of Vision Transformer (ViT) from the paper:  
+Unofficial implementation of Vision Transformer (ViT) from the paper:  
 An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale ([Paper](https://arxiv.org/abs/2010.11929))
 
-Implemented based on the pytorch template (https://github.com/victoresque/pytorch-template)  
-
-### Also improved based on the paper:
+And improved based on the paper:  
 How to train your ViT? Data, Augmentation, and Regularization in Vision Transformers ([Paper](https://arxiv.org/abs/2106.10270))
+
+Implemented based on the pytorch template (https://github.com/victoresque/pytorch-template)  
 
 ## Requirements
 * Python >= 3.5 (3.6 recommended)
