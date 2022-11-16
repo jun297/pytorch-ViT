@@ -2,16 +2,6 @@
 ### Unofficial implementation of Vision Transformer (ViT) based on the pytorch template (https://github.com/victoresque/pytorch-template) from the paper:  
 An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
 
-## References:  
-For implementation:  
-https://github.com/victoresque/pytorch-template
-https://jalammar.github.io/illustrated-transformer/  
-https://youtu.be/ovB0ddFtzzA  
-
-For training:  
-https://github.com/omihub777/ViT-CIFAR  
-https://arxiv.org/abs/2106.10270
-
 ## Requirements
 * Python >= 3.5 (3.6 recommended)
 * PyTorch >= 0.4 (1.2 recommended)
@@ -162,7 +152,7 @@ The `validation_split` can be a ratio of validation set per total data(0.0 <= fl
 ### Checkpoints
 You can specify the name of the training session in config files:
   ```json
-  "name": "MNIST_LeNet",
+  "name": "ViT_CIFAR10",
   ```
 
 The checkpoints will be saved in `save_dir/name/timestamp/checkpoint_epoch_n`, with timestamp in mmdd_HHMMSS format.
@@ -207,3 +197,13 @@ If you need more visualizations, use `add_scalar('tag', data)`, `add_image('tag'
 `add_something()` methods in this template are basically wrappers for those of `tensorboardX.SummaryWriter` and `torch.utils.tensorboard.SummaryWriter` modules. 
 
 **Note**: You don't have to specify current steps, since `WriterTensorboard` class defined at `logger/visualization.py` will track current steps.
+
+## References:  
+For implementation:  
+https://github.com/victoresque/pytorch-template
+https://jalammar.github.io/illustrated-transformer/  
+https://youtu.be/ovB0ddFtzzA  
+
+For training:  
+https://github.com/omihub777/ViT-CIFAR  
+https://arxiv.org/abs/2106.10270
