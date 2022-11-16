@@ -1,8 +1,6 @@
 # pytorch-ViT
-### Unofficial implementation of Vision Transformer (ViT) under the pytorch template (https://github.com/victoresque/pytorch-template) from the paper:  
+### Unofficial implementation of Vision Transformer (ViT) based on the pytorch template (https://github.com/victoresque/pytorch-template) from the paper:  
 An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
-
-Trained on CIFAR-10
 
 ## References:  
 For implementation:  
@@ -14,55 +12,11 @@ For training:
 https://github.com/omihub777/ViT-CIFAR  
 https://arxiv.org/abs/2106.10270
 
-
-PyTorch deep learning project made easy.
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-* [PyTorch Template Project](#pytorch-template-project)
-	* [Requirements](#requirements)
-	* [Features](#features)
-	* [Folder Structure](#folder-structure)
-	* [Usage](#usage)
-		* [Config file format](#config-file-format)
-		* [Using config files](#using-config-files)
-		* [Resuming from checkpoints](#resuming-from-checkpoints)
-    * [Using Multiple GPU](#using-multiple-gpu)
-	* [Customization](#customization)
-		* [Custom CLI options](#custom-cli-options)
-		* [Data Loader](#data-loader)
-		* [Trainer](#trainer)
-		* [Model](#model)
-		* [Loss](#loss)
-		* [metrics](#metrics)
-		* [Additional logging](#additional-logging)
-		* [Validation data](#validation-data)
-		* [Checkpoints](#checkpoints)
-    * [Tensorboard Visualization](#tensorboard-visualization)
-	* [Contribution](#contribution)
-	* [TODOs](#todos)
-	* [License](#license)
-	* [Acknowledgements](#acknowledgements)
-
-<!-- /code_chunk_output -->
-
 ## Requirements
 * Python >= 3.5 (3.6 recommended)
 * PyTorch >= 0.4 (1.2 recommended)
 * tqdm (Optional for `test.py`)
 * tensorboard >= 1.14 (see [Tensorboard Visualization](#tensorboard-visualization))
-
-## Features
-* Clear folder structure which is suitable for many deep learning projects.
-* `.json` config file support for convenient parameter tuning.
-* Customizable command line options for more convenient parameter tuning.
-* Checkpoint saving and resuming.
-* Abstract base classes for faster development:
-  * `BaseTrainer` handles checkpoint saving/resuming, training process logging, and more.
-  * `BaseDataLoader` handles batch generation, data shuffling, and validation data splitting.
-  * `BaseModel` provides basic model summary.
 
 ## Folder Structure
   ```
