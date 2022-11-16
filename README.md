@@ -20,7 +20,7 @@ https://arxiv.org/abs/2106.10270
 
 ## Folder Structure
   ```
-  pytorch-template/
+  pytorch-ViT/
   │
   ├── train.py - main script to start training
   ├── test.py - evaluation of trained model
